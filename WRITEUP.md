@@ -18,3 +18,22 @@ cat age.agekey |
 
 sops --encrypt --in-place apps/griffin/secret.yaml
 ```
+
+### 5. Prove connectivity
+
+```bash
+❯ kubectl port-forward svc/griffin 8080:80 -n griffin
+
+# in a separate tab
+❯ curl localhost:8080
+Greetings from deployment.yaml
+Secret loaded: yes
+
+```
+
+
+Tell flux to reconcile "apps" kustomization immediately.
+
+``` bash
+flux reconcile kustomization apps --with-source --namespace=flux-system
+```
