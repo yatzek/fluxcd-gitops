@@ -4,12 +4,10 @@ metadata:
   name: griffin
   namespace: griffin
 spec:
-  # TODO: Choose an appropriate service type for your connectivity approach.
   type: ClusterIP
   selector:
-    app: gryffin
+    app: griffin
   ports:
-    - port: 80
-      targetPort: http
-      protocol: TCP
-      name: http
+  - port: 80
+    protocol: TCP
+    targetPort: 8080

@@ -10,6 +10,7 @@ spec:
     name: flux-system
   path: ./apps
   prune: true
+  # tell FluxCD to decrypt using sops-age secret
   decryption:
     provider: sops
     secretRef:
