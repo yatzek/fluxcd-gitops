@@ -1,0 +1,9 @@
+# SOPS configuration
+# See: https://fluxcd.io/flux/guides/mozilla-sops/
+#
+# TODO: Replace the age key below with the one you generate.
+#
+creation_rules:
+  - path_regex: .*\.yaml$
+    encrypted_regex: ^(data|stringData)$
+    age: age1y6v9e9nfk6msqv9taq8dlg90yp8lv397nsyh498sta43vmg5t92qly6dva

@@ -17,9 +17,6 @@ spec:
     spec:
       containers:
         - name: griffin
-          # TODO: Set the image to the locally-built Docker image.
-          #       Think about how minikube accesses local images
-          #       and what imagePullPolicy you need.
           image: griffin:0.0.1
           imagePullPolicy: Never # tells minikube to use the local image
           ports:
@@ -28,9 +25,11 @@ spec:
           env:
             - name: GREETING
               value: "Greetings from deployment.yaml"
-            # TODO: Mount the SECRET_TOKEN from the encrypted secret.
-            #       The secret is defined in secret.yaml — you will need
-            #       to encrypt it with SOPS before Flux can use it.
+            - name: SECRET_TOKEN
+              valueFrom:
+                secretKeyRef:
+                  name: griffin-secret
+                  key: SECRET_TOKEN
           livenessProbe:
             httpGet:
               path: /healthz
