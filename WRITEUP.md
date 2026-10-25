@@ -28,12 +28,14 @@ sops --encrypt --in-place apps/griffin/secret.yaml
 ❯ curl localhost:8080
 Greetings from deployment.yaml
 Secret loaded: yes
-
 ```
 
+### 6. Automate the bootstrap with Ansible
 
-Tell flux to reconcile "apps" kustomization immediately.
+```bash
+# age.agekey used to encrypt griffin secret must be present
+export GITHUB_USER="your-github-user"
+export GITHUB_TOKEN="your-github-pat"
 
-``` bash
-flux reconcile kustomization apps --with-source --namespace=flux-system
+ansible-playbook playbook.yml
 ```
